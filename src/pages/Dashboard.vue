@@ -134,7 +134,7 @@ export default {
         const { data } = await axios.get(this.msInventoryUrl + '/inventory',{
           params:{
             take: 6,
-            page:this.inventoryPagination.current_page
+            page:this.inventoryPagination?.current_page??1
           }
         })
         this.inventoryIngredients = data.data;
@@ -151,7 +151,7 @@ export default {
         const { data } = await axios.get(this.msRecipeUrl + '/recipes',{
           params:{
             take: 6,
-            page:this.recipePagination.current_page
+            page:this.recipePagination?.current_page??1
           }
         })
         this.recipesData = data.data;
@@ -168,14 +168,14 @@ export default {
         const { data } = await axios.get(this.msInventoryUrl + '/purchases',{
           params:{
             take: 6,
-            page:this.purchasesPagination.current_page
+            page:this.purchasesPagination ? this.purchasesPagination.current_page : 1
           }
         })
         this.ingredientPurchases = data.data;
         this.purchasesPagination = data.pagination;
         this.loadingPurchases = false;
       } catch (err) {
-        this.$alertify.error("Ocurrió un error al intentar hacer la solicitud");
+        this.$alertify.error("Ocurrió un error al intentar hacer la solicitud3");
         this.loadingPurchases = false;
       }
     },
@@ -200,7 +200,7 @@ export default {
             pending_orders: 1,
             order_direction: 'ASC',
             take: 6,
-            page:this.pendingdOrdersPagination.current_page
+            page:this.pendingdOrdersPagination?.current_page??1
           }
         });
         this.pendingOrders = data.data;
@@ -219,7 +219,7 @@ export default {
             status: "completed",
             order_direction: 'DESC',
             take: 6,
-            page:this.completedOrdersPagination.current_page
+            page:this.completedOrdersPagination?.current_page??1
           }
         });
         this.completedOrders = data.data;
