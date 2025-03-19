@@ -175,7 +175,7 @@ export default {
         this.purchasesPagination = data.pagination;
         this.loadingPurchases = false;
       } catch (err) {
-        this.$alertify.error("Ocurrió un error al intentar hacer la solicitud3");
+        this.$alertify.error("Ocurrió un error al intentar hacer la solicitud");
         this.loadingPurchases = false;
       }
     },
